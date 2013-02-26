@@ -39,43 +39,41 @@ Modules
 I'm going to recommend using the Django framework for building this project for a few reasons:
 
 1. Django comes with a lot of built-in services that we can use, such as signals, user authentication, and email.
-
 2. There are a lot of already-built open source Django applications out there that we can integrate into our own project and modify as necessary.
-
 3. Django's project structure is very modular, so it will be relatively easy to divide the labor and have everyone working on the parts of the app they're most interested in.
-
 4. A lot of you are already working with Django over at UT - this can only help you get more experience.
 
 Here are the basic modules I think you'll need:
 
-* Registration
+### Registration
 
-Registration isn't built into Django.  It should be fairly simple to build from scratch, but there are also a couple of popular modules out there that a lot of developers use:
+> Registration isn't built into Django.  It should be fairly simple to build from scratch, but there are also a couple of popular modules out there that a lot of developers use:
+> 
+> https://bitbucket.org/ubernostrum/django-registration
+> https://pypi.python.org/pypi/django-inspectional-registration
 
-            https://bitbucket.org/ubernostrum/django-registration
-            https://pypi.python.org/pypi/django-inspectional-registration
+### Profile
 
-* Profile
+> This is another common module for which there's already a good solution out there:
+> 
+> https://bitbucket.org/ubernostrum/django-profiles/
+> 
+> It would need to be modified to:
+> * store the user's current location
+>   * determine the user's current location (need to determine at what intervals)
+>     OR
+>   * let the user set a current location manually
+> * store the user's "next event" (see below - this could just as easily be a model in the calendar app)
 
-        This is another common module for which there's already a good solution out there:
+### Calendar
 
-            https://bitbucket.org/ubernostrum/django-profiles/
-
-        It would need to be modified to:
-        * store the user's current location
-            * determine the user's current location (need to determine at what intervals)
-                    OR
-            * let the user set a current location manually
-        * store the user's "next event" (see below - this could just as easily be a model in the calendar app)
-
-* Calendar
-    * Integrate with Google calendar, or the common calendar API of your choice
-    * Poll the calendar for the next upcoming event (need to determine at what intervals)
-    * Write an algorithm to calculate geographical distance and drive time, based on map APIs (and traffic, if available)**
-
-        Some suggestions for handling the event flow:
-        * When polling for the next event, calculate the geographical distance and set an alert time, then store the whole thing as the user's "next event"
-        * Replace the "next event" if a new calendar event is added that predates it
+> * Integrate with Google calendar, or the common calendar API of your choice
+> * Poll the calendar for the next upcoming event (need to determine at what intervals)
+> * Write an algorithm to calculate geographical distance and drive time, based on map APIs (and traffic, if available)**
+> 
+> Some suggestions for handling the event flow:
+> * When polling for the next event, calculate the geographical distance and set an alert time, then store the whole thing as the user's "next event"
+> * Replace the "next event" if a new calendar event is added that predates it
 
 APIs
 ----------------------------
